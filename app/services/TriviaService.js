@@ -1,5 +1,6 @@
 // https://opentdb.com/api.php?amount=25&category=22
 
+import { AppState } from "../AppState.js";
 import { Trivia } from "../models/Trivia.js";
 
 
@@ -16,6 +17,7 @@ class TriviaService {
     console.log(response, 'response');
     const trivias = response.data.results.map(pojo => new Trivia(pojo)) // data.results?
     console.log(trivias, 'trivias here');
+    AppState.trivias = trivias
 
   }
 
