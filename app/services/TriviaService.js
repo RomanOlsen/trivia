@@ -11,10 +11,10 @@ const triviaApi = axios.create({
 
 class TriviaService {
 
-  getTrivias() {
-    const response = triviaApi.get()
+  async getTrivias() {
+    const response = await triviaApi.get()
     console.log(response, 'response');
-    const trivias = response.data.data.map(pojo => new Trivia(pojo)) // data.results?
+    const trivias = response.data.results.map(pojo => new Trivia(pojo)) // data.results?
     console.log(trivias, 'trivias here');
 
   }

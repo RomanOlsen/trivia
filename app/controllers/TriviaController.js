@@ -6,14 +6,14 @@ export class TriviaController {
   }
 
 
-  getTrivias() {
+  async getTrivias() {
     try {
-      triviaService.getTrivias()
+      await triviaService.getTrivias()
 
 
     }
     catch (error) {
-      console.error('Cant find api');
+      console.error('Cant find api', error);
 
     }
   }
