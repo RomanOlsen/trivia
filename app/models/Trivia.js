@@ -9,6 +9,17 @@ export class Trivia {
     this.correctAnswer = data.correct_answer
     this.incorrectAnswer = data.incorrect_answers
     this.type = data.type
+
+    this.correctAnswer.answerOrder = Math.random()
+    this.incorrectAnswer.answerOrder = Math.random()
+
+    this.allAnswers = [
+      this.correctAnswer.answerOrder,
+      this.incorrectAnswer[0].answerOrder,
+      this.incorrectAnswer[1].answerOrder,
+      this.incorrectAnswer[2].answerOrder,
+
+    ]
     // category is geography
     // lets reveal difficulty at end of game
     // + any other data the trivia api includes you want to keep
@@ -35,20 +46,26 @@ export class Trivia {
       return `<button class="btn btn-success">True</button>
               <button class="btn btn-danger">False</button>`
     }
-    return `<button class="btn btn-success">${this.correctAnswer}</button>
-        <button class="btn btn-success">${this.incorrectAnswer[0]}</button>
-        <button class="btn btn-success">${this.incorrectAnswer[1]}</button>
-        <button class="btn btn-success">${this.incorrectAnswer[2]}</button>`
+
+
+    this.allAnswers.sort()
+    console.log(this.allAnswers);
+
+    return `
+    
+        <button class="btn btn-danger">${this.correctAnswer, this.correctAnswer.answerOrder}</button>
+        <button class="btn btn-primary">${this.incorrectAnswer[0], this.incorrectAnswer[0].answerOrder}</button>
+        <button class="btn btn-success">${this.incorrectAnswer[1], this.incorrectAnswer[1].answerOrder}</button>
+        <button class="btn btn-warning">${this.incorrectAnswer[2]}</button>`
   }
 
   get getHTMLTemplate() {
-    return ` <div class="col-3">
-      <div class="card">
+    return `<div class="col-3">
+        <div class="card my-3">
         <div class="card-header">${this.question}</div>
- ${this.chooseType}
-
-      </div>
-        </div> `
+        ${this.chooseType}
+        </div>
+        </div>`
   }
 
 

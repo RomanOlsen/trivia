@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { triviaService } from "../services/TriviaService.js"
+import { Pop } from "../utils/Pop.js";
 
 export class TriviaController {
   constructor() {
@@ -16,7 +17,7 @@ export class TriviaController {
     }
     catch (error) {
       console.error('Cant find api', error);
-
+      Pop.toast('yikes')
     }
   }
 
