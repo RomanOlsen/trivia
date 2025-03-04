@@ -10,14 +10,14 @@ export class Trivia {
     this.incorrectAnswer = data.incorrect_answers
     this.type = data.type
 
-    this.correctAnswer.answerOrder = Math.random()
-    this.incorrectAnswer.answerOrder = Math.random()
+    // this.correctAnswer.answerOrder = Math.random()
+    // this.incorrectAnswer.answerOrder = Math.random()
 
     this.allAnswers = [
-      this.correctAnswer.answerOrder,
-      this.incorrectAnswer[0].answerOrder,
-      this.incorrectAnswer[1].answerOrder,
-      this.incorrectAnswer[2].answerOrder,
+      this.correctAnswer,
+      this.incorrectAnswer[0],
+      this.incorrectAnswer[1],
+      this.incorrectAnswer[2]
 
     ]
     // category is geography
@@ -48,15 +48,12 @@ export class Trivia {
     }
 
 
-    this.allAnswers.sort()
+    this.allAnswers.sort(() => Math.random() - 0.5)
     console.log(this.allAnswers);
+    let answerContent = ''
+    this.allAnswers.forEach(answer => answerContent += `<button class="btn btn-danger">${answer}</button>`)
+    return answerContent
 
-    return `
-    
-        <button class="btn btn-danger">${this.correctAnswer, this.correctAnswer.answerOrder}</button>
-        <button class="btn btn-primary">${this.incorrectAnswer[0], this.incorrectAnswer[0].answerOrder}</button>
-        <button class="btn btn-success">${this.incorrectAnswer[1], this.incorrectAnswer[1].answerOrder}</button>
-        <button class="btn btn-warning">${this.incorrectAnswer[2]}</button>`
   }
 
   get getHTMLTemplate() {
